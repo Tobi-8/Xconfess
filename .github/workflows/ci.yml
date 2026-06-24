@@ -37,13 +37,21 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build backend
         run: npm run build --workspace=xconfess-backend
 
       - name: Test backend
         run: npm run test --workspace=xconfess-backend
+
+      - name: Upload updated lockfile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: updated-lockfile
+          path: package-lock.json
+          retention-days: 1
 
   frontend:
     name: Frontend / build and test
@@ -60,13 +68,21 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build frontend
         run: npm run build --workspace=xconfess-frontend
 
       - name: Test frontend
         run: npm run test --workspace=xconfess-frontend
+
+      - name: Upload updated lockfile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: updated-lockfile
+          path: package-lock.json
+          retention-days: 1
 
   contracts:
     name: Contracts / fmt clippy and test
