@@ -55,7 +55,7 @@ describe('ChainReconciliationService - Issue #173', () => {
         {
           provide: AuditLogService,
           useValue: {
-            logAction: jest.fn(),
+            log: jest.fn(),
           },
         },
         {
