@@ -17,8 +17,8 @@ interface QueueDetail {
 }
 
 @Injectable()
-export class QueueHealthIndicator extends HealthIndicator {
-  private readonly logger = new Logger(QueueHealthIndicator.name);
+export class RedisHealthIndicator extends HealthIndicator {
+  private readonly logger = new Logger(RedisHealthIndicator.name);
 
   constructor(
     @InjectQueue('notifications') private readonly notifications: Queue,
